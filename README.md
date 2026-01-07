@@ -8,18 +8,6 @@
 
 ---
 
-## Overview
-
-This repository contains the official HTML, CSS, and JavaScript code for the VOIDMC Anarchy Server landing page. The project features:
-
-- Animated backgrounds and color gradients  
-- Interactive particle effects  
-- Parallax effects on information boxes  
-- Copyable server IP functionality  
-- Stylish buttons, tags, and glow animations  
-
----
-
 ## Copyright and Usage
 
 All code, design elements, and content in this project are the intellectual property of the author.  
