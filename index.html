@@ -5,100 +5,142 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VOIDMC - Anarchy Server</title>
 <style>
+/* Global Reset & Base */
+* { box-sizing: border-box; }
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    background: linear-gradient(-45deg, #ff0000, #660000, #333333, #111111);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
-    color: white;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ff1111, #880000, #333333, #111111, #440000);
+    background-size: 500% 500%;
+    animation: gradientShift 20s ease infinite;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     position: relative;
 }
-@keyframes gradientAnimation {
+@keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
+/* Parallax mouse effect container */
+.parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+}
+
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
+    padding: 25px 80px;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(255,0,0,0.3);
+    z-index: 1000;
+    border-bottom: 2px solid rgba(255,0,0,0.4);
 }
 .logo {
-    font-size: 3em;
-    font-weight: bold;
-    background: linear-gradient(to right, #00ffff, #ff0000);
+    font-size: 3.8em;
+    font-weight: 900;
+    background: linear-gradient(90deg, #00ffff, #ff0066, #00ffff);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(0,255,255,0.5);
+    animation: logoGlow 4s ease infinite;
+    text-shadow: 0 0 30px rgba(0,255,255,0.6);
+}
+@keyframes logoGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 nav a {
     color: #ffffff;
-    margin: 0 20px;
+    margin: 0 25px;
     text-decoration: none;
-    font-size: 1.2em;
-    transition: color 0.3s;
+    font-size: 1.3em;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 50%;
+    background: #00ffff;
+    transition: all 0.4s;
 }
 nav a:hover {
     color: #00ffff;
-    text-shadow: 0 0 10px #00ffff;
+    text-shadow: 0 0 15px #00ffff;
 }
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Sections */
 .section {
-    padding: 100px 20px;
+    padding: 120px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-height: 80vh;
+    min-height: 90vh;
+    position: relative;
 }
 h1 {
-    font-size: 5em;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #00ffff, #ffffff);
+    font-size: 6em;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #00ffff, #ff3366, #ffffff, #ff3366, #00ffff);
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(0,255,255,0.6);
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: titleGlow 5s ease infinite;
+    text-shadow: 0 0 40px rgba(0,255,255,0.7);
 }
-@keyframes glow {
-    from { text-shadow: 0 0 20px #00ffff; }
-    to { text-shadow: 0 0 40px #00ffff, 0 0 60px #ff0000; }
+@keyframes titleGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 h2 {
-    font-size: 2.5em;
-    margin-bottom: 50px;
-    color: #ff6666;
+    font-size: 2.8em;
+    margin-bottom: 60px;
+    color: #ff8888;
+    text-shadow: 0 0 20px #ff0000;
 }
+
+/* Buttons */
 .button {
     position: relative;
-    background: rgba(20,20,20,0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(25,25,25,0.85);
+    backdrop-filter: blur(12px);
     color: #ffffff;
-    border: 2px solid #ff3333;
-    padding: 18px 50px;
-    border-radius: 50px;
-    font-size: 1.4em;
-    margin: 20px;
+    border: 3px solid #ff4444;
+    padding: 20px 60px;
+    border-radius: 60px;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin: 25px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
     overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 .button:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255,0,0,0.5);
+    transform: scale(1.2) translateY(-5px);
     border-color: #00ffff;
+    box-shadow: 0 0 40px #ff0000, 0 0 80px rgba(255,0,0,0.6);
 }
 .button::before {
     content: '';
@@ -107,52 +149,72 @@ h2 {
     left: 50%;
     width: 0;
     height: 0;
-    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
-    transition: width 0.6s ease, height 0.6s ease;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
     transform: translate(-50%, -50%);
     border-radius: 50%;
+    transition: width 0.7s ease, height 0.7s ease;
     z-index: -1;
 }
 .button:active::before {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
+
+/* Info Boxes with Parallax Shadow */
 .info-box {
-    background: rgba(15,15,15,0.7);
-    backdrop-filter: blur(15px);
-    padding: 40px 50px;
-    border-radius: 20px;
-    margin: 30px 0;
-    width: 80%;
-    max-width: 500px;
-    border: 1px solid rgba(255,0,0,0.4);
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    background: rgba(10,10,10,0.75);
+    backdrop-filter: blur(18px);
+    padding: 50px 60px;
+    border-radius: 25px;
+    margin: 40px 0;
+    width: 85%;
+    max-width: 600px;
+    border: 1px solid rgba(255,50,50,0.5);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    z-index: 2;
 }
 .info-box p {
-    font-size: 1.5em;
-    margin: 15px 0;
-    color: #cccccc;
+    font-size: 1.7em;
+    margin: 20px 0;
+    color: #dddddd;
+    line-height: 1.6;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
+#copyMessage {
+    margin-top: 20px;
+    font-size: 1.4em;
+    color: #00ff88;
+    opacity: 0;
+    transition: opacity 0.6s;
+}
+
+/* Tags */
 .tags {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 .tag {
-    background: rgba(0,255,255,0.15);
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-size: 1.2em;
-    border: 1px solid rgba(0,255,255,0.3);
-    transition: all 0.3s;
+    background: rgba(0,255,255,0.2);
+    padding: 15px 35px;
+    border-radius: 40px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border: 2px solid rgba(0,255,255,0.4);
+    transition: all 0.4s ease;
+    text-shadow: 0 0 10px #00ffff;
 }
 .tag:hover {
-    background: rgba(0,255,255,0.3);
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px rgba(0,255,255,0.4);
+    background: rgba(0,255,255,0.4);
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 0 25px rgba(0,255,255,0.6);
 }
+
+/* Particle Canvas */
 canvas#particlesCanvas {
     position: fixed;
     top: 0;
@@ -160,87 +222,110 @@ canvas#particlesCanvas {
     z-index: -1;
     pointer-events: none;
 }
-section img {
-    max-width: 90%;
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(255,255,255,0.3);
-    margin-top: 40px;
-}
+
+/* Footer */
 footer {
-    padding: 30px;
+    padding: 40px;
     text-align: center;
-    background: rgba(0,0,0,0.6);
-    color: #888888;
+    background: rgba(0,0,0,0.7);
+    color: #aaaaaa;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* Glow Text Class */
+.glow-text {
+    animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+@keyframes pulseGlow {
+    from { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+    to { text-shadow: 0 0 20px #ff0000, 0 0 40px #ff3366, 0 0 60px #ff0000; }
 }
 </style>
 </head>
 <body>
-<canvas id="particlesCanvas"></canvas>
-<header>
-    <div class="logo">VOIDMC</div>
-    <nav>
-        <a href="#ip">IP</a>
-        <a href="#rules">Rules</a>
-        <a href="#serverinfo">Server Info</a>
-    </nav>
-</header>
-<section id="ip" class="section">
-    <h1>Server IP</h1>
-    <div class="info-box">
-        <p>void.mcnation.xyz</p>
-        <button class="button" id="copyButton">Copy IP to Clipboard</button>
-        <p id="copyMessage" style="margin-top:15px; color:#00ff00; opacity:0; transition:opacity 0.5s;">IP Copied!</p>
-    </div>
-</section>
-<section id="rules" class="section">
-    <h1>Rules</h1>
-    <div class="info-box">
-        <p>• No rules - Pure Anarchy!</p>
-        <p>• Only rule: No server lagging exploits</p>
-    </div>
-</section>
-<section id="serverinfo" class="section">
-    <h1>Server Info</h1>
-    <div class="info-box">
-        <p>New Anarchy Server with many Dupes</p>
-        <p>Version: 1.7.2 to 1.21.1</p>
-        <p>Java Edition Only</p>
-        <p>No Cracked / No Bedrock</p>
-        <p>Max Slots: 99</p>
-    </div>
-    <div class="tags">
-        <span class="tag">/tpa</span>
-        <span class="tag">/home</span>
-        <span class="tag">No Rules</span>
-        <span class="tag">Dupes Allowed</span>
-        <span class="tag">Anarchy</span>
-        <span class="tag">Survival</span>
-    </div>
-</section>
-<footer>
-    <p>&copy; 2026 VOIDMC - Pure Chaos Awaits</p>
-</footer>
+<div class="parallax-container" id="parallax">
+    <canvas id="particlesCanvas"></canvas>
+
+    <header>
+        <div class="logo">VOIDMC</div>
+        <nav>
+            <a href="#ip">IP</a>
+            <a href="#rules">Rules</a>
+            <a href="#serverinfo">Server Info</a>
+        </nav>
+    </header>
+
+    <section id="ip" class="section">
+        <h1 class="glow-text">Server IP</h1>
+        <div class="info-box" data-tilt>
+            <p>void.mcnation.xyz</p>
+            <button class="button" id="copyButton">Copy IP to Clipboard</button>
+            <p id="copyMessage">IP Copied Successfully!</p>
+        </div>
+    </section>
+
+    <section id="rules" class="section">
+        <h1 class="glow-text">Rules</h1>
+        <div class="info-box" data-tilt>
+            <p class="glow-text">One Single Rule</p>
+            <p>• Only rule: No server lagging exploits</p>
+            <p>Everything else is allowed – pure anarchy!</p>
+        </div>
+    </section>
+
+    <section id="serverinfo" class="section">
+        <h1 class="glow-text">Server Info</h1>
+        <div class="info-box" data-tilt>
+            <p>New Anarchy Server with many Dupes</p>
+            <p>Version: 1.7.2 to 1.21.1</p>
+            <p>Java Edition Only</p>
+            <p>No Cracked / No Bedrock</p>
+            <p>Max Slots: 99</p>
+        </div>
+        <div class="tags">
+            <span class="tag">/tpa</span>
+            <span class="tag">/home</span>
+            <span class="tag">No Rules</span>
+            <span class="tag">Dupes Allowed</span>
+            <span class="tag">Anarchy</span>
+            <span class="tag">Survival</span>
+            <span class="tag">Chaos</span>
+            <span class="tag">Freedom</span>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 VOIDMC - Embrace the Chaos</p>
+    </footer>
+</div>
+
 <script>
-// Particle background (floating particles instead of snow for a modern feel)
+// Particle Background
 const canvas = document.getElementById('particlesCanvas');
 const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
+let particles = [];
+
 window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     initParticles();
 });
-const numParticles = 150;
-let particles = [];
+
 class Particle {
     constructor() {
+        this.reset();
+    }
+    reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.size = Math.random() * 4 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1.5 - 0.75;
+        this.speedY = Math.random() * 1.5 - 0.75;
+        this.opacity = Math.random() * 0.6 + 0.3;
+        this.color = Math.random() > 0.5 ? '#00ffff' : '#ff3366';
     }
     update() {
         this.x += this.speedX;
@@ -249,36 +334,59 @@ class Particle {
         if (this.y > height || this.y < 0) this.speedY *= -1;
     }
     draw() {
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
     }
 }
+
 function initParticles() {
     particles = [];
-    for (let i = 0; i < numParticles; i++) {
+    const count = window.innerWidth < 768 ? 80 : 180;
+    for (let i = 0; i < count; i++) {
         particles.push(new Particle());
     }
 }
-function animateParticles() {
+
+function animate() {
     ctx.clearRect(0, 0, width, height);
     particles.forEach(p => {
         p.update();
         p.draw();
     });
-    requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animate);
 }
+
 initParticles();
-animateParticles();
-// Copy IP functionality with splash feedback
+animate();
+
+// Mouse Parallax Effect on Info Boxes
+const parallaxContainer = document.getElementById('parallax');
+const tiltElements = document.querySelectorAll('[data-tilt]');
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 100;
+    mouseY = (e.clientY / window.innerHeight) * 100;
+
+    tiltElements.forEach(el => {
+        const intensity = 20;
+        const xTilt = (mouseY - 50) / 50 * intensity;
+        const yTilt = (50 - mouseX) / 50 * intensity;
+
+        el.style.transform = `translateZ(50px) rotateX(${xTilt}deg) rotateY(${yTilt}deg)`;
+        el.style.boxShadow = `${-yTilt}px ${-xTilt}px 40px rgba(0,0,0,0.8)`;
+    });
+});
+
+// Copy IP Button
 document.getElementById('copyButton').addEventListener('click', () => {
     navigator.clipboard.writeText('void.mcnation.xyz');
-    const message = document.getElementById('copyMessage');
-    message.style.opacity = 1;
-    setTimeout(() => {
-        message.style.opacity = 0;
-    }, 2000);
+    const msg = document.getElementById('copyMessage');
+    msg.style.opacity = 1;
+    setTimeout(() => { msg.style.opacity = 0; }, 2000);
 });
 </script>
 </body>
