@@ -1,62 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>VOIDMC</title>
 <style>
-/* Grundlayout */
+/* Hintergrund Gradient: Grau -> Rot */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertikal zentriert */
+    align-items: center;     /* horizontal zentriert */
+    background: linear-gradient(135deg, #2b2b2b, #8b0000);
+    font-family: 'Courier New', monospace;
+    color: #fff;
+}
+
+/* Titel */
+h1 {
+    font-size: 64px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/* Menü Container */
 .menu {
-  display: flex;
-  justify-content: center; /* zentriert horizontal */
-  gap: 20px;
-  padding: 20px;
-  background: #000; /* dunkel wie VoidMC */
-  font-family: 'Courier New', monospace; /* cyber / glitchy vibe */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Buttons */
 .menu button {
-  background: #111;
-  color: #fff;
-  border: 2px solid #555;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+    background: #111;
+    color: #fff;
+    border: 2px solid #550000;
+    padding: 16px 32px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* Hover Effekt – Glow / Shake */
+/* Hover Effekt */
 .menu button:hover {
-  color: #00ffcc;
-  border-color: #00ffcc;
-  transform: scale(1.1) rotate(-1deg);
-  box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+    color: #ff5555;
+    border-color: #ff0000;
+    transform: scale(1.1) rotate(-1deg);
+    box-shadow: 0 0 15px #ff5555, 0 0 30px #ff0000;
 }
 
-/* Click Effekt – kurz kleiner */
+/* Click Effekt */
 .menu button:active {
-  transform: scale(0.95) rotate(0deg);
-  box-shadow: 0 0 5px #00ffcc;
-}
-
-/* Optional: kleines glitchy pseudo-animation */
-.menu button::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: rgba(0,255,204,0.1);
-  transform: rotate(45deg);
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-
-.menu button:hover::before {
-  top: -10%;
-  left: -10%;
+    transform: scale(0.95) rotate(0deg);
+    box-shadow: 0 0 5px #ff0000;
 }
 </style>
+</head>
+<body>
 
-<!-- MENU HTML -->
+<h1>VOIDMC</h1>
+
 <nav class="menu">
   <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/'">HOME</button>
   <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/ip/'">IP</button>
@@ -64,3 +72,6 @@
   <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/howtojoin/'">HOW TO JOIN</button>
   <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/server-info/'">SERVER INFO</button>
 </nav>
+
+</body>
+</html>
