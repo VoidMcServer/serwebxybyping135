@@ -1,83 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOIDMC - Anarchy Server</title>
-    <style>
-        body { margin: 0; padding: 0; background: #0d1117; color: white; font-family: 'Segoe UI', Arial, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: rgba(0, 0, 0, 0.4); }
-        .logo { font-size: 2.5em; font-weight: bold; color: #00ffff; text-shadow: 0 0 10px #00ffff; }
-        .slogan { font-size: 1em; opacity: 0.8; margin-top: 5px; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; opacity: 0.8; }
-        nav a.active { text-decoration: underline; opacity: 1; }
-        .play-now-header { background: #00ffff; color: black; padding: 10px 30px; border-radius: 30px; font-weight: bold; text-decoration: none; }
-        main { display: flex; flex: 1; padding: 40px; gap: 40px; align-items: center; }
-        .left { flex: 1; }
-        .title { font-size: 4em; color: #00ffff; text-shadow: 0 0 20px #00ffff; margin: 0; }
-        .description { font-size: 1.3em; margin: 20px 0; opacity: 0.9; }
-        .play-now { background: #00ffff; color: black; padding: 15px 40px; border-radius: 30px; font-size: 1.5em; font-weight: bold; text-decoration: none; display: inline-block; margin: 20px 0; }
-        .discord { color: #00ffff; text-decoration: none; font-size: 1.2em; }
-        .tags { display: flex; gap: 15px; margin: 20px 0; }
-        .tag { background: rgba(0, 255, 255, 0.2); padding: 8px 20px; border-radius: 20px; }
-        .right { flex: 1; position: relative; }
-        .carousel { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 0 30px rgba(0, 255, 255, 0.3); }
-        .carousel img { width: 100%; display: none; }
-        .carousel img.active { display: block; }
-        .true-anarchy { position: absolute; top: 20px; right: 20px; background: yellow; color: black; padding: 10px 20px; font-weight: bold; border-radius: 10px; transform: rotate(10deg); }
-        .carousel-indicator { position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px; }
-        .server-info { position: absolute; bottom: 20px; left: 0; right: 0; background: rgba(0, 0, 0, 0.7); padding: 20px; text-align: center; }
-        .ip { font-size: 1.8em; margin: 10px 0; font-weight: bold; }
-        .copy-btn { background: #00ffff; color: black; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOIDMC - Anarchy Server</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(-45deg, #ff0000, #660000, #333333, #111111);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: white;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,0,0,0.3);
+}
+.logo {
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(to right, #00ffff, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0,255,255,0.5);
+}
+nav a {
+    color: #ffffff;
+    margin: 0 20px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+.section {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh;
+}
+h1 {
+    font-size: 5em;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #00ffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(0,255,255,0.6);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from { text-shadow: 0 0 20px #00ffff; }
+    to { text-shadow: 0 0 40px #00ffff, 0 0 60px #ff0000; }
+}
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: #ff6666;
+}
+.button {
+    position: relative;
+    background: rgba(20,20,20,0.8);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    border: 2px solid #ff3333;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-size: 1.4em;
+    margin: 20px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+.button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 30px #ff0000, 0 0 60px rgba(255,0,0,0.5);
+    border-color: #00ffff;
+}
+.button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 70%);
+    transition: width 0.6s ease, height 0.6s ease;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+.button:active::before {
+    width: 300px;
+    height: 300px;
+}
+.info-box {
+    background: rgba(15,15,15,0.7);
+    backdrop-filter: blur(15px);
+    padding: 40px 50px;
+    border-radius: 20px;
+    margin: 30px 0;
+    width: 80%;
+    max-width: 500px;
+    border: 1px solid rgba(255,0,0,0.4);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.info-box p {
+    font-size: 1.5em;
+    margin: 15px 0;
+    color: #cccccc;
+}
+.tags {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+.tag {
+    background: rgba(0,255,255,0.15);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    border: 1px solid rgba(0,255,255,0.3);
+    transition: all 0.3s;
+}
+.tag:hover {
+    background: rgba(0,255,255,0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0,255,255,0.4);
+}
+canvas#particlesCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+section img {
+    max-width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255,255,255,0.3);
+    margin-top: 40px;
+}
+footer {
+    padding: 30px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    color: #888888;
+}
+</style>
 </head>
 <body>
-    <header>
-        <div>
-            <div class="logo">VOIDMC</div>
-            <div class="slogan">The ultimate anarchy experience</div>
-        </div>
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="../ip/index.html">IP</a>
-            <a href="../rules/index.html">Rules</a>
-            <a href="../howtojoin/index.html">How to Join</a>
-            <a href="../server-info/index.html">Server Info</a>
-            <a href="#" class="play-now-header">Play Now</a>
-        </nav>
-    </header>
-
-    <main>
-        <div class="left">
-            <!-- Hier kommt der seiten-spezifische Inhalt rein -->
-        </div>
-
-        <div class="right">
-            <div class="carousel">
-                <img src="https://assetsio.gnwcdn.com/ridealong_feb28_1.jpg?width=1920&quality=100&format=png&enable=upscale&auto=webp" class="active" alt="Epic anarchy pyramid base">
-                <img src="https://cdn.mos.cms.futurecdn.net/kU53KVP8WZzHzJBor8r4oY.png" alt="Massive chaos landscape">
-                <img src="https://blog.6b6t.org/content/images/2024/11/player-6b6t-minecraft-anarchy-server-spawn-sunrise-2.png" alt="Vast sunrise destruction">
-                <img src="https://www.6b6t.org/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2F6b6t%2F6b6t-gallery%2Fmain%2Fassets%2Fgallery%2F5.png&w=3840&q=75" alt="Huge anarchy structures">
-
-                <div class="true-anarchy">TRUE ANARCHY</div>
-                <div class="carousel-indicator">4/4</div>
-                <div class="server-info">
-                    <div class="ip">void.mcnation.xyz</div>
-                    <button class="copy-btn" onclick="navigator.clipboard.writeText('void.mcnation.xyz')">Copy</button>
-                </div>
-            </div>
-            <p style="text-align:center; margin-top:20px;">Scroll to explore ↓</p>
-        </div>
-    </main>
-
-    <script>
-        const images = document.querySelectorAll('.carousel img');
-        let current = 0;
-        setInterval(() => {
-            images[current].classList.remove('active');
-            current = (current + 1) % images.length;
-            images[current].classList.add('active');
-        }, 6000);
-    </script>
+<canvas id="particlesCanvas"></canvas>
+<header>
+    <div class="logo">VOIDMC</div>
+    <nav>
+        <a href="#ip">IP</a>
+        <a href="#rules">Rules</a>
+        <a href="#serverinfo">Server Info</a>
+    </nav>
+</header>
+<section id="ip" class="section">
+    <h1>Server IP</h1>
+    <div class="info-box">
+        <p>void.mcnation.xyz</p>
+        <button class="button" id="copyButton">Copy IP to Clipboard</button>
+        <p id="copyMessage" style="margin-top:15px; color:#00ff00; opacity:0; transition:opacity 0.5s;">IP Copied!</p>
+    </div>
+</section>
+<section id="rules" class="section">
+    <h1>Rules</h1>
+    <div class="info-box">
+        <p>• No rules - Pure Anarchy!</p>
+        <p>• Only rule: No server lagging exploits</p>
+    </div>
+</section>
+<section id="serverinfo" class="section">
+    <h1>Server Info</h1>
+    <div class="info-box">
+        <p>New Anarchy Server with many Dupes</p>
+        <p>Version: 1.7.2 to 1.21.1</p>
+        <p>Java Edition Only</p>
+        <p>No Cracked / No Bedrock</p>
+        <p>Max Slots: 99</p>
+    </div>
+    <div class="tags">
+        <span class="tag">/tpa</span>
+        <span class="tag">/home</span>
+        <span class="tag">No Rules</span>
+        <span class="tag">Dupes Allowed</span>
+        <span class="tag">Anarchy</span>
+        <span class="tag">Survival</span>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2026 VOIDMC - Pure Chaos Awaits</p>
+</footer>
+<script>
+// Particle background (floating particles instead of snow for a modern feel)
+const canvas = document.getElementById('particlesCanvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    initParticles();
+});
+const numParticles = 150;
+let particles = [];
+class Particle {
+    constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 4 + 1;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > width || this.x < 0) this.speedX *= -1;
+        if (this.y > height || this.y < 0) this.speedY *= -1;
+    }
+    draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+function initParticles() {
+    particles = [];
+    for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle());
+    }
+}
+function animateParticles() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+}
+initParticles();
+animateParticles();
+// Copy IP functionality with splash feedback
+document.getElementById('copyButton').addEventListener('click', () => {
+    navigator.clipboard.writeText('void.mcnation.xyz');
+    const message = document.getElementById('copyMessage');
+    message.style.opacity = 1;
+    setTimeout(() => {
+        message.style.opacity = 0;
+    }, 2000);
+});
+</script>
 </body>
 </html>
