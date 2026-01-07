@@ -1,21 +1,66 @@
+<style>
+/* Grundlayout */
+.menu {
+  display: flex;
+  justify-content: center; /* zentriert horizontal */
+  gap: 20px;
+  padding: 20px;
+  background: #000; /* dunkel wie VoidMC */
+  font-family: 'Courier New', monospace; /* cyber / glitchy vibe */
+}
+
+/* Buttons */
+.menu button {
+  background: #111;
+  color: #fff;
+  border: 2px solid #555;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Hover Effekt – Glow / Shake */
+.menu button:hover {
+  color: #00ffcc;
+  border-color: #00ffcc;
+  transform: scale(1.1) rotate(-1deg);
+  box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+}
+
+/* Click Effekt – kurz kleiner */
+.menu button:active {
+  transform: scale(0.95) rotate(0deg);
+  box-shadow: 0 0 5px #00ffcc;
+}
+
+/* Optional: kleines glitchy pseudo-animation */
+.menu button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(0,255,204,0.1);
+  transform: rotate(45deg);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.menu button:hover::before {
+  top: -10%;
+  left: -10%;
+}
+</style>
+
+<!-- MENU HTML -->
 <nav class="menu">
-  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/'">
-    HOME
-  </button>
-
-  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/ip/'">
-    IP
-  </button>
-
-  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/rules/'">
-    RULES
-  </button>
-
-  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/howtojoin/'">
-    HOW TO JOIN
-  </button>
-
-  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/server-info/'">
-    SERVER INFO
-  </button>
+  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/'">HOME</button>
+  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/ip/'">IP</button>
+  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/rules/'">RULES</button>
+  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/howtojoin/'">HOW TO JOIN</button>
+  <button onclick="location.href='https://voidmcserver.github.io/VoidMcWebsite/server-info/'">SERVER INFO</button>
 </nav>
