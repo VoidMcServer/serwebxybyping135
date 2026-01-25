@@ -24,4 +24,4 @@ For inquiries or requests for permission, please contact the author directly.
 
 **Discord Server:** https://discord.gg/FgjHgnQAjn
 
-**Email:** voidmc.info@gmail.com
+**Email:** xyanarchy@gmail.com
