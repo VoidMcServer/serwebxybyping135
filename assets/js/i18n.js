@@ -149,3 +149,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+<script>
+document.querySelectorAll('.ip-container').forEach(container => {
+  container.addEventListener('click', () => {
+    const textToCopy = container.dataset.copy;
+    
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      // Show toast
+      let toast = document.getElementById('copy-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'copy-toast';
+        toast.className = 'copy-toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = `Copied: ${textToCopy}`;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    });
+  });
+});
+</script>
