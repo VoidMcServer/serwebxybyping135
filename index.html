@@ -79,36 +79,72 @@
         </div>
       </div>
 
-      <!-- Right Column: Java + Bedrock -->
+      <!-- Right Column -->
       <div class="col-lg-6 text-center text-lg-end mt-5 mt-lg-0 fade-left">
-
-        <!-- Java Edition -->
+        
+        <!-- Java Card -->
         <div class="hero-card mb-4">
           <img src="256x256xyverselogo.png" alt="xyverse Logo" class="server-logo-img mb-3">
           <h2 class="h4 fw-bold mb-3 text-uppercase">Java Edition</h2>
-          <input type="text" readonly value="xyverse.eu" class="ip-box" onclick="this.select()" style="width:100%; text-align:center; cursor:pointer;">
-          <p class="text-light-50 small mt-2">Click box → Ctrl + C to copy</p>
+          <div class="ip-container" data-copy="xyverse.eu">
+            <div class="ip-box">xyverse.eu</div>
+            <i class="fas fa-copy copy-icon"></i>
+          </div>
+          <p class="text-light-50 small mb-0 mt-2">Premium Java • No port needed</p>
         </div>
 
-        <!-- Bedrock Edition -->
+        <!-- Bedrock Card -->
         <div class="hero-card">
           <h2 class="h4 fw-bold mb-3 text-uppercase text-info">Bedrock Edition</h2>
           
-          <input type="text" readonly value="bedrock.xyverse.eu" class="ip-box mb-3" onclick="this.select()" style="width:100%; text-align:center; cursor:pointer;">
-          
-          <div style="margin: 20px 0;">
-            <small class="text-light-50 d-block mb-1">Port</small>
-            <input type="text" readonly value="26386" class="ip-box port-box" onclick="this.select()" style="width:140px; font-size:1.25rem; padding:12px 20px; cursor:pointer;">
+          <div class="ip-container mb-3" data-copy="bedrock.xyverse.eu">
+            <div class="ip-box">bedrock.xyverse.eu</div>
+            <i class="fas fa-copy copy-icon"></i>
           </div>
           
-          <p class="text-light-50 small mt-2">Click any box → Ctrl + C to copy</p>
+          <div class="ip-container" data-copy="26386">
+            <div class="ip-box port-box">26386</div>
+            <i class="fas fa-copy copy-icon"></i>
+          </div>
+          
+          <p class="text-light-50 small mt-3 mb-0">Port: 26386 • Windows • Mobile • Console</p>
         </div>
-
       </div>
     </div>
   </div>
   <div class="hero-overlay"></div>
 </section>
+
+<!-- REQUIRED JAVASCRIPT - COPY TO CLIPBOARD ON SINGLE CLICK -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.ip-container').forEach(container => {
+    container.addEventListener('click', function() {
+      const text = this.getAttribute('data-copy');
+      if (!text) return;
+
+      const icon = this.querySelector('.copy-icon');
+
+      navigator.clipboard.writeText(text).then(() => {
+        if (icon) {
+          const originalClass = icon.className;
+          icon.className = 'fas fa-check text-success';
+          setTimeout(() => {
+            icon.className = originalClass;
+          }, 1500);
+        }
+      }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      });
+    });
+  });
+});
+</script>
 
     <!-- New Player Stats Section -->
 <section class="section">
